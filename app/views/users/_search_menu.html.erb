@@ -1,0 +1,21 @@
+<div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+  <div class="relative flex h-16 items-center justify-between">
+    <!-- Search section -->
+    <div class="flex flex-1 justify-center lg:justify-end">
+      <div class="w-full px-2 lg:px-6">
+        <%= search_form_for @q do |f| %>
+          <label for="search" class="sr-only">Search users</label>
+          <div class="relative text-indigo-200 focus-within:text-gray-400">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <%= f.search_field :first_name_or_maiden_name_or_last_name_or_email_i_cont_any, class: "block w-full rounded-md border-0 py-1.5 pl-10 pr-3 text-gray-900 border-gray-400 outline-gray-200 outline placeholder:text-indigo-200 focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-0 focus:placeholder:text-gray-400 sm:text-sm sm:leading-6", placeholder: "Search users", autofocus: true %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= render "filter_menu" %>
+  </div>
+</div>

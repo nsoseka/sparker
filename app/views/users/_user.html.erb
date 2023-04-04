@@ -1,0 +1,56 @@
+<tr id="<%= dom_id user %>">
+  <td>
+    <input id="<%= user.id %>" aria-describedby="user-delete" name="user" type="checkbox" class="user-list-item h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+  </td>
+  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-0">
+    <div class="flex items-center">
+      <div class="h-10 w-10 flex-shrink-0">
+        <%= image_tag user.image.present? ? user.image : "https://robohash.org/hicveldicta.png", class: "h-10 w-10 rounded-full" %>
+      </div>
+      <div class="ml-4">
+        <div class="font-medium text-gray-900"><%= user.display_name %></div>
+        <div class="text-gray-500"><%= user.email %></div>
+        <div class="text-gray-500"><%= user.username %></div>
+        <div class="text-gray-500"><%= user.birth_date %></div>
+        <div class="text-gray-500"><%= user.phone %></div>
+      </div>
+    </div>
+  </td>
+   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+    <div class="text-gray-900">Age: <%= user.age %></div>
+    <div class="text-gray-500">Height: <%= user.height %></div>
+    <div class="text-gray-900">Blood group: <%= user.blood_group %></div>
+    <div class="text-gray-500">Weight: <%= user.weight %></div>
+  </td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+    <div class="text-gray-900">Password: <%= user.password %></div>
+    <div class="text-gray-500">IP: <%= user.ip %></div>
+    <div class="text-gray-900">Mac address: <%= user.mac_address %></div>
+    <div class="text-gray-500">EIN: <%= user.ein %></div>
+    <div class="text-gray-500">SSN: <%= user.ssn %></div>
+    <div class="text-gray-500">User agent: <%= user.user_agent.truncate(10) %></div>
+  </td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+    <div class="text-gray-900">
+      <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Eye color: <%= user.eye_color %></span>
+    </div>
+    <div class="text-gray-500">
+      <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">Gender: <%= user.gender %></span>
+    </div>
+  </td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+    <div class="text-gray-900">Domain: <%= user.domain %></div>
+    <div class="text-gray-500" title="<%= user.university %>">University: <%= user.university.truncate(15) %></div>
+    <div class="text-gray-900">Blood group: <%= user.blood_group %></div>
+    <div class="text-gray-500">Weight: <%= user.weight %></div>
+  </td>
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-0">
+    <% if action_name != "show" %>
+       <%= link_to "Show", user, class: "text-indigo-600 hover:text-indigo-900" %>
+    <% end %>
+    <% if action_name == "index" || action_name.nil? %>
+      <%= link_to 'Edit', edit_user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
+      <hr class="my-6">
+    <% end %>
+  </td>
+</tr>

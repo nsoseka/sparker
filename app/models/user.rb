@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_paranoid
+  self.implicit_order_column = :created_at
   broadcasts_to ->(user) { "users-c51808f2-9500-4cb4-b288-1852d2200ed5" }, inserts_by: :prepend, target: :users
 
   has_one :hair, dependent: :destroy

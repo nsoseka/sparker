@@ -1,4 +1,5 @@
 class Company < ApplicationRecord
+  acts_as_paranoid
   has_one :address, dependent: :destroy
   belongs_to :user
 

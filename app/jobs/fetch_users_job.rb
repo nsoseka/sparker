@@ -49,12 +49,21 @@ class FetchUsersJob < ApplicationJob
         company_address[:address] = c_address
         company[:address_attributes] = company_address
 
-        u.update_attribute(:hair_attributes, hair)
-        u.update_attribute(:bank_attributes, bank)
-        u.update_attribute(:address_attributes, address)
-        u.update_attribute(:company_attributes, company)
-        u.save
+        if !u.edited && !u.deleted_at.present?
+          u.update_attribute(:hair_attributes, hair)
+          u.update_attribute(:bank_attributes, bank)
+          u.update_attribute(:address_attributes, address)
+          u.update_attribute(:company_attributes, company)
+        end
+
+        if !u.deleted_at.present?
+          u.save
+        end
       end
     end
   end
 end
+
+# disable reloading elements that are edited already
+# softdelete with paranoid
+#

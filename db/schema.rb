@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_03_001728) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_04_223859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,7 +23,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_001728) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "company_id"
+    t.datetime "deleted_at"
     t.index ["company_id"], name: "index_addresses_on_company_id"
+    t.index ["deleted_at"], name: "index_addresses_on_deleted_at"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
@@ -36,6 +38,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_001728) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_banks_on_deleted_at"
     t.index ["user_id"], name: "index_banks_on_user_id"
   end
 
@@ -46,6 +50,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_001728) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_companies_on_deleted_at"
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
@@ -55,7 +61,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_001728) do
     t.bigint "address_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
     t.index ["address_id"], name: "index_coordinates_on_address_id"
+    t.index ["deleted_at"], name: "index_coordinates_on_deleted_at"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -79,6 +87,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_001728) do
     t.string "hair_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_hairs_on_deleted_at"
     t.index ["user_id"], name: "index_hairs_on_user_id"
   end
 
@@ -107,6 +117,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_001728) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "birth_date"
+    t.boolean "edited", default: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
   end
 
   add_foreign_key "banks", "users"

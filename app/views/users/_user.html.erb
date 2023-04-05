@@ -30,7 +30,7 @@
     <div class="text-gray-900">Mac address: <%= user.mac_address %></div>
     <div class="text-gray-500">EIN: <%= user.ein %></div>
     <div class="text-gray-500">SSN: <%= user.ssn %></div>
-    <div class="text-gray-500">User agent: <%= user.user_agent.truncate(10) %></div>
+    <div class="text-gray-500">User agent: <%= user.user_agent&.truncate(10) %></div>
   </td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
     <div class="text-gray-900">
@@ -42,7 +42,7 @@
   </td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
     <div class="text-gray-900">Domain: <%= user.domain %></div>
-    <div class="text-gray-500" title="<%= user.university %>">University: <%= user.university.truncate(15) %></div>
+    <div class="text-gray-500" title="<%= user.university %>">University: <%= user.university&.truncate(15) %></div>
   </td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-left text-sm font-medium sm:pr-0">
     <% if action_name != "show" %>

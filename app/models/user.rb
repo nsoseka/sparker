@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one :company, dependent: :destroy
 
   validates_uniqueness_of :email
+  validates_presence_of :email, :first_name, :maiden_name, :last_name, :gender, :blood_group
 
   accepts_nested_attributes_for :hair, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :bank, allow_destroy: true, reject_if: :all_blank

@@ -45,7 +45,7 @@ RSpec.describe "users/edit", type: :view do
 
       assert_select "input[name=?]", "user[age]"
 
-      assert_select "input[name=?]", "user[gender]"
+      assert_select "select[name=?]", "user[gender]"
 
       assert_select "input[name=?]", "user[email]"
 
@@ -80,6 +80,18 @@ RSpec.describe "users/edit", type: :view do
       assert_select "input[name=?]", "user[ssn]"
 
       assert_select "input[name=?]", "user[user_agent]"
+
+      # address nested attributes
+      assert_select "input[name=?]", "user[address_attributes][postal_code]"
+
+      # company nested attributes
+      assert_select "input[name=?]", "user[company_attributes][department]"
+
+      # hair nested attributes
+      assert_select "input[name=?]", "user[hair_attributes][color]"
+
+      # bank nested attributes
+      assert_select "input[name=?]", "user[bank_attributes][currency]"
     end
   end
 end

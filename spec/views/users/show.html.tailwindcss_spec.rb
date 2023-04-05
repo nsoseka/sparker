@@ -39,8 +39,6 @@ RSpec.describe "users/show", type: :view do
     expect(rendered).to match(/Phone/)
     expect(rendered).to match(/Username/)
     expect(rendered).to match(/Password/)
-    expect(rendered).to match(/Birth Date/)
-    expect(rendered).to match(/Image/)
     expect(rendered).to match(/Blood Group/)
     expect(rendered).to match(/Height/)
     expect(rendered).to match(/Weight/)

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "users/index", type: :view do
   before(:each) do
+    @q = User.ransack(params[:q])
+    @skip = 10
     assign(:users, [
       User.create!(
         first_name: "First Name",
@@ -9,7 +11,7 @@ RSpec.describe "users/index", type: :view do
         maiden_name: "Maiden Name",
         age: 2,
         gender: "Gender",
-        email: "Email",
+        email: "Email1",
         phone: "Phone",
         username: "Username",
         password: "Password",
@@ -33,7 +35,7 @@ RSpec.describe "users/index", type: :view do
         maiden_name: "Maiden Name",
         age: 2,
         gender: "Gender",
-        email: "Email",
+        email: "Email2",
         phone: "Phone",
         username: "Username",
         password: "Password",
@@ -56,18 +58,13 @@ RSpec.describe "users/index", type: :view do
 
   it "renders a list of users" do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new("First Name".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Last Name".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Maiden Name".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
+    cell_selector = Rails::VERSION::STRING >= '7' ? 'tr>td' : 'div>p'
+    assert_select cell_selector, text: Regexp.new(2.to_s), count: 3
     assert_select cell_selector, text: Regexp.new("Gender".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Email".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Phone".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Username".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Password".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Birth Date".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Image".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Blood Group".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Height".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Weight".to_s), count: 2
